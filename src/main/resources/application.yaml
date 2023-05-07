@@ -1,0 +1,9 @@
+quarkus:
+  datasource:
+    db-kind: postgresql
+    username: developer
+    password: p4SSW0rd
+    jdbc:
+      url: jdbc:postgresql://localhost:5432/demo
+  flyway:
+    migrate-at-start: true
