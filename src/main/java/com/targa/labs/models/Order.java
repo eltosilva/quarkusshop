@@ -36,7 +36,7 @@ public class Order extends AbstractEntity{
     private Payment payment;
 
     @Embedded
-    private Address address;
+    private Address shipmentAddress;
 
     @OneToMany(mappedBy = "order", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     private Set<OrderItem> orderItems;
@@ -45,12 +45,12 @@ public class Order extends AbstractEntity{
     private Cart cart;
 
     public Order(@NotNull BigDecimal price, @NotNull OrderStatus status, ZonedDateTime shipped, @NotNull Payment payment,
-                 Address address, Set<OrderItem> orderItems, Cart cart) {
+                 Address shipmentAddress, Set<OrderItem> orderItems, Cart cart) {
         this.price = price;
         this.status = status;
         this.shipped = shipped;
         this.payment = payment;
-        this.address = address;
+        this.shipmentAddress = shipmentAddress;
         this.orderItems = orderItems;
         this.cart = cart;
     }
@@ -60,11 +60,11 @@ public class Order extends AbstractEntity{
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Order order = (Order) o;
-        return Objects.equals(price, order.price) && status == order.status && Objects.equals(shipped, order.shipped) && Objects.equals(payment, order.payment) && Objects.equals(address, order.address) && Objects.equals(orderItems, order.orderItems) && Objects.equals(cart, order.cart);
+        return Objects.equals(price, order.price) && status == order.status && Objects.equals(shipped, order.shipped) && Objects.equals(payment, order.payment) && Objects.equals(shipmentAddress, order.shipmentAddress) && Objects.equals(orderItems, order.orderItems) && Objects.equals(cart, order.cart);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(price, status, shipped, payment, address, orderItems, cart);
+        return Objects.hash(price, status, shipped, payment, shipmentAddress, orderItems, cart);
     }
 }
